@@ -7,6 +7,8 @@ import { OrderForm } from "@/components/order-form"
 import { AdminDashboard } from "@/components/admin-dashboard"
 import { EnhancedHeroSection } from "@/components/enhanced-hero-section"
 import { EnhancedBenefitsSection } from "@/components/enhanced-benefits-section"
+import { EnhancedOrderForm } from "@/components/enhanced-order-form"
+import { SEOHead } from "@/components/seo-head"
 
 export default function LandingPage() {
   const [adminClicks, setAdminClicks] = useState(0)
@@ -21,10 +23,20 @@ export default function LandingPage() {
   }
 
   if (showAdmin) {
-    return <AdminDashboard onBack={() => setShowAdmin(false)} />
+    return (
+      <>
+        <SEOHead
+          title="لوحة الإدارة - سندرين بيوتي"
+          description="لوحة إدارة متقدمة لإدارة طلبات منتجات سندرين بيوتي"
+        />
+        <AdminDashboard onBack={() => setShowAdmin(false)} />
+      </>
+    )
   }
 
   return (
+    <>
+      <SEOHead />
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b shadow-sm">
@@ -126,7 +138,7 @@ export default function LandingPage() {
       </section>
 
       {/* Order Form Component */}
-      <OrderForm />
+      <EnhancedOrderForm />
 
       {/* Footer */}
       <footer className="py-12 px-4 bg-gradient-to-r from-primary/10 to-secondary/10">
@@ -165,5 +177,6 @@ export default function LandingPage() {
         </div>
       </footer>
     </div>
+    </>
   )
 }
